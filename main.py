@@ -9,21 +9,21 @@ import pytest
 
 import requests
 
-session_file = "session.json"
-file = "user.txt"
+user_file = "user.json"
+file = "hash.txt"
 
 app = Flask(__name__)
 
 
 def write_session(user_data: dict):
     last = read_session()
-    f = open(session_file, 'w')
+    f = open(user_file, 'w')
     last.append(user_data)
     f.write(json.dumps(last))
     f.close()
 
 def read_session() -> dict:
-    f = open(session_file,'r')
+    f = open(user_file,'r')
     data = json.load(f)
     f.close()
     print(type(data))
@@ -36,7 +36,7 @@ def change_name(name,new_name):
         if i['name'] == name:
             i['name'] = new_name
             break
-            f = open(session_file, 'w')
+            f = open(user_file, 'w')
             f.write(json.dumps(data))
             f.close()
 
